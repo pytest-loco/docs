@@ -1,0 +1,11 @@
+article[role=main] p {
+    text-align: justify;
+}
+
+.admonition a.reference {
+    padding-left: 1em;
+}
+
+.pydantic_field dd {
+    font-size: 96%;
+}
