@@ -1,8 +1,11 @@
 Get Started
 ===========
 
+Manual setup
+------------
+
 Create a project
-----------------
+~~~~~~~~~~~~~~~~
 
 **Prerequisites**: Python 3.13 and
 `Poetry <https://python-poetry.org/docs/#installation>`_
@@ -17,42 +20,8 @@ Create a new Poetry project and add pytest-loco as a dependency:
    cd example-project
    poetry add pytest-loco
 
-To test HTTP services, also add the HTTP extension:
-
-.. code-block:: console
-   :caption: Add the HTTP extension for testing HTTP services
-
-   poetry add pytest-loco-http
-
-To work with JSON payloads, add the JSON extension:
-
-.. code-block:: console
-   :caption: Add the JSON extension for working with JSON payloads
-
-   poetry add pytest-loco-json
-
-Configure IDE
--------------
-
-``pytest-loco`` provides a command to configure VSCode's
-`YAML Language Support <https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml>`_
-by Red Hat for schema validation and autocompletion inside your test files.
-
-Make sure the **YAML Language Support** extension is installed in VSCode, then run:
-
-.. code-block:: console
-   :caption: Configure VSCode YAML Language Support for pytest-loco
-
-   poetry run pytest-loco vscode-configure
-
-This generates the necessary VSCode workspace settings so that the editor
-recognises the pytest-loco DSL schema and provides inline validation and
-suggestions as you edit ``test_*.yaml`` test files.
-
-----
-
-Create a first test case
-------------------------
+Create a test case
+~~~~~~~~~~~~~~~~~~~
 
 ``pytest-loco`` collects YAML files whose names match the pattern ``test_*.yml`` or ``test_*.yaml``.
 Any such file found under the configured test paths is treated as a DSL specification and executed as a test.
@@ -99,21 +68,49 @@ Create the file ``tests/test_hello_world.yaml``:
        value: !var actual
        match: Hello, World!
 
-Run the test case
------------------
+Run the tests
+~~~~~~~~~~~~~
 
 Use pytest to discover and run the test:
 
 .. code-block:: console
    :caption: Run the test case with pytest
 
-   poetry run pytest tests/test_hello_world.yaml -v
+   poetry run pytest
 
-``pytest-loco`` registers a pytest plugin that collects ``test_*.yaml`` case files automatically.
+``pytest-loco`` registers a pytest plugin that collects case files automatically.
 
-To run all test cases in the ``tests/`` directory:
+
+Boilerplating
+-------------
+
+You can simplify the process by using a boilerplate, such as an API testing boilerplate.
+
+Create a project
+~~~~~~~~~~~~~~~~
+
+**Prerequisites**: Python 3.13,
+`Cookiecutter <https://cookiecutter.readthedocs.io/en/stable/installation.html>`_ and
+`Poetry <https://python-poetry.org/docs/#installation>`_
+must be installed.
+
+Create a project from the repo template:
 
 .. code-block:: console
-   :caption: Run all test cases in the tests/ directory
+   :caption: Create a new Poetry project from a boilerplate
 
-   poetry run pytest tests/ -v
+   cookiecutter https://github.com/pytest-loco/api-tests.git
+
+Follow the instructions provided by Cookiecutter.
+
+Run the tests
+~~~~~~~~~~~~~
+
+Use pytest to discover and run the test:
+
+.. code-block:: console
+   :caption: Run the test case with pytest
+
+   poetry run pytest
+
+See ``README.md`` in the new project's root for more details.

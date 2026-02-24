@@ -154,31 +154,34 @@ Redirect history can be inspected:
 .. code-block:: yaml
    :caption: Get response with redirects
 
-   title: Get response with redirects
-   action: http.post
+   title: Test redirects history
+   description: >
+     This test verifies that a GET request to the /redirect-to endpoint with a URL
+     parameter that points to a /status/204 endpoint returns a status code of 204
+     and that the response history includes a redirect with a status code of 302.
 
-   url: !urljoin baseUrl /redirect/2
+   action: http.get
+   url: !urljoin baseUrl /redirect-to
+   params:
+     url: !urljoin baseUrl /status/204
+   headers:
+     accept: application/json
 
    output: response
 
    expect:
 
+   - title: Status is 204
+     value: !var response.status
+     match: 204
+
    - title: History is not empty
      value: !var response.history
      notEqual: []
 
-   - title: Status of first item is 302
-     value: !var response.history.0
+   - title: Status of redirect response is 302
+     value: !var response.history.0.status
      match: 302
-
-   - title: Status of second item is 302
-     value: !var response.history.1
-     match: 302
-
-   - title: Status of final item is 200
-     value: !var response.history.2
-     match: 200
-
 
 .. rubric:: Nested schemas
 
@@ -215,14 +218,15 @@ echo message verified via a multiline regular expression.
 .. code-block:: yaml
    :caption: http.get
 
-   title: Test http.get action
-   action: http.get
+   title: Test GET
+   description: >
+     This test verifies that a GET request to the /get endpoint returns a status
+     code of 200 and that the response contains the correct URL from the request.
 
+   action: http.get
    url: !urljoin baseUrl /get
    headers:
      accept: application/json
-   params:
-     test: 'true'
 
    output: response
 
@@ -232,11 +236,16 @@ echo message verified via a multiline regular expression.
      value: !var response.status
      match: 200
 
-   - title: Response contains echo message
-     value: !var response.text
-     regexMatch: httpbin\.org/get\?test=true
-     multiline: yes
-
+   - title: Response contains request URL
+     description: >
+       The response should include the URL that was requested, confirming that
+       the server received the correct request and is returning the expected
+       data in the response.
+     value: !load
+       format: json
+       source: !var response.text
+       select: $.url
+     match: https://httpbin.org/get
 
 .. rubric:: HTTP POST with files
 
@@ -250,10 +259,14 @@ file data, verified via a multiline regular expression.
 .. code-block:: yaml
    :caption: http.post
 
-   title: Test http.post action with text file
-   action: http.post
+   title: Test POST with text file
+   description: >
+     This test verifies that a POST request to the /post endpoint with a text file
+     returns a status code of 200 and that the response contains the correct file
+     content that was sent in the request.
 
-   url: !urljoin baseUrl /get
+   action: http.post
+   url: !urljoin baseUrl /post
    headers:
      accept: application/json
    files:
@@ -268,11 +281,17 @@ file data, verified via a multiline regular expression.
      value: !var response.status
      match: 200
 
-   - title: Files are sent
-     value: !var response.text
-     regexMatch: '"files":\s*{\s*"test":\s*"Hello, World!"\s*}'
-     multiline: yes
-
+   - title: Body was sent
+     description: >
+        The response should include the content of the file that was sent in the
+        request, confirming that the server received the file correctly and is
+        returning the expected data in the response.
+     value: !load
+       format: json
+       source: !var response.text
+       select: $.files
+     match:
+       test: Hello, World!
 
 .. rubric:: HTTP PATCH with JSON
 
@@ -287,30 +306,32 @@ was correctly processed by the server.
 .. code-block:: yaml
    :caption: http.patch
 
-   title: Test http.patch action with JSON content
-   action: http.patch
+   title: Test PATCH with JSON content
+   description: >
+     This test verifies that a PATCH request to the /patch endpoint with JSON content
+     returns a status code of 200 and that the response contains the correct JSON
+     data that was sent in the request.
 
+   vars:
+     requestData: !dump
+       format: json
+       source:
+         name: Molecule Man
+         age: 29
+         secretIdentity: Dan Jukes
+         powers:
+         - Radiation resistance
+         - Turning tiny
+         - Radiation blast
+
+   action: http.patch
    url: !urljoin baseUrl /patch
    headers:
      accept: application/json
      content-type: application/json
-   data: !dump
-     format: json
-     source:
-       name: Molecule Man
-       age: 29
-       secretIdentity: Dan Jukes
-       powers:
-       - Radiation resistance
-       - Turning tiny
-       - Radiation blast
+   data: !var requestData
 
    output: response
-
-   export:
-     responseMessage: !load
-       format: json
-       source: !var response.text
 
    expect:
 
@@ -319,7 +340,14 @@ was correctly processed by the server.
      match: 200
 
    - title: Body was sent
-     value: !var responseMessage.json
+     description: >
+       The response should include the JSON data that was sent in the request, confirming
+       that the server received the correct data and is returning the expected
+       information in the response.
+     value: !load
+       format: json
+       source: !var response.text
+       select: $.json
      partialMatch: yes
      match:
        name: Molecule Man

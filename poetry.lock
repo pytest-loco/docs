@@ -1074,14 +1074,14 @@ dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests
 
 [[package]]
 name = "pytest-loco"
-version = "1.3.4"
+version = "1.3.5"
 description = "Another one YAML-based DSL for testing"
 optional = false
 python-versions = "<4,>=3.13"
 groups = ["main"]
 files = [
-    {file = "pytest_loco-1.3.4-py3-none-any.whl", hash = "sha256:4746cb61e1cdc9fa72cd4c1e5230a7223a215ecf28c411609b4d33f4cfa5b5a7"},
-    {file = "pytest_loco-1.3.4.tar.gz", hash = "sha256:5999fdcb00d6aa377a6a0743014d6701b2ca1135a8d991c772db2dd358ed6d63"},
+    {file = "pytest_loco-1.3.5-py3-none-any.whl", hash = "sha256:4c6744b5af973adc3edfc2177649c4810e7122370919bcf7919b4e5fdd77b302"},
+    {file = "pytest_loco-1.3.5.tar.gz", hash = "sha256:e065053b74cd2b348c8a0e9bc112b00283554ebf0d0f496291861d8047c78eab"},
 ]
 
 [package.dependencies]
@@ -1093,19 +1093,19 @@ pyyaml = ">=6.0.3,<7.0.0"
 
 [[package]]
 name = "pytest-loco-http"
-version = "1.3.4"
+version = "1.3.5"
 description = "HTTP support for pytest-loco"
 optional = false
 python-versions = "<4,>=3.13"
 groups = ["main"]
 files = [
-    {file = "pytest_loco_http-1.3.4-py3-none-any.whl", hash = "sha256:af47ffddc98fb5f4dc96af0fcc28a4f4cd105794533a3253fdd3ba42a58cd3d9"},
-    {file = "pytest_loco_http-1.3.4.tar.gz", hash = "sha256:35679090d8dcf2548347605af44a2a339b5cd65176adcea19a283b753d4dff14"},
+    {file = "pytest_loco_http-1.3.5-py3-none-any.whl", hash = "sha256:7f674d72e935c47a7a3fe383ab6cd2f3ff36a78f4f9ad045e6dab66a4a6bc8dc"},
+    {file = "pytest_loco_http-1.3.5.tar.gz", hash = "sha256:24829ba2d0b79ebea24de09035d70c3302265dd4e62abe6a2fc51d0b8a5d41d5"},
 ]
 
 [package.dependencies]
 pydantic = ">=2.12.5,<3.0.0"
-pytest-loco = ">=1.3.3"
+pytest-loco = ">=1.3.5"
 pyyaml = ">=6.0.3,<7.0.0"
 requests = ">=2.32.5,<3.0.0"
 requests-toolbelt = ">=1.0.0,<2.0.0"
@@ -1113,19 +1113,19 @@ yarl = ">=1.22.0,<2.0.0"
 
 [[package]]
 name = "pytest-loco-json"
-version = "1.3.4"
+version = "1.3.5"
 description = "JSON support for pytest-loco"
 optional = false
 python-versions = "<4,>=3.13"
 groups = ["main"]
 files = [
-    {file = "pytest_loco_json-1.3.4-py3-none-any.whl", hash = "sha256:74a205590eecc7540951527d04800e4cce1956f474e1d4af54e8e1b40436ec6f"},
-    {file = "pytest_loco_json-1.3.4.tar.gz", hash = "sha256:79f0fa984f523c4dbb926bdcfbfd23185bc1aba385cb45125071d1b374ec3c52"},
+    {file = "pytest_loco_json-1.3.5-py3-none-any.whl", hash = "sha256:3c8eb30c01acc871374998b2217813a3bf9216cf9a14014c187d759796a5dee8"},
+    {file = "pytest_loco_json-1.3.5.tar.gz", hash = "sha256:565176193344a3f7eb4c00b0e64b8a770142889785edeb22abb68004d85a4949"},
 ]
 
 [package.dependencies]
 orjson = ">=3.11.7,<4.0.0"
-pytest-loco = ">=1.3.3"
+pytest-loco = ">=1.3.5"
 python-jsonpath = ">=2.0.2,<3.0.0"
 
 [[package]]
@@ -1694,4 +1694,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4"
-content-hash = "71bb440f2b7d59c4f17f6f114940926fdd521123eedea018f3a24faad9a0f409"
+content-hash = "ab6a5f671a80e3ca0435bc2d2f3f11401ca19d5f20ef114eb33762b38d5e5a98"
