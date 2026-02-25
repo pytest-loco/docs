@@ -7,7 +7,7 @@ Manual setup
 Create a project
 ~~~~~~~~~~~~~~~~
 
-**Prerequisites**: Python 3.13 and
+**Prerequisites**: Python and
 `Poetry <https://python-poetry.org/docs/#installation>`_
 must be installed.
 
@@ -89,7 +89,7 @@ You can simplify the process by using a boilerplate, such as an API testing boil
 Create a project
 ~~~~~~~~~~~~~~~~
 
-**Prerequisites**: Python 3.13,
+**Prerequisites**: Python,
 `Cookiecutter <https://cookiecutter.readthedocs.io/en/stable/installation.html>`_ and
 `Poetry <https://python-poetry.org/docs/#installation>`_
 must be installed.
