@@ -1,6 +1,12 @@
 Configure
 =========
 
+.. warning::
+   Current version has not been tested in parallel execution mode.
+   This task is in the backlog and is required for the stable release. We recommend
+   avoiding plugins like ``pytest-xdist`` with ``pytest-loco``; it is best to run
+   pytest with the ``-n 0`` flag until the stable version is released.
+
 Command-line options
 --------------------
 
