@@ -29,6 +29,7 @@ pytest-loco
    :caption: Integrations
    :hidden:
 
+   integrations/allure
    integrations/vscode
 
 Declarative DSL for structured, extensible test scenarios in pytest.
